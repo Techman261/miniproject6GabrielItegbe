@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-b#a(b041j1^w2oi(8q=&_c$861jn44ox&6+gi1tkb=)+n0-kdy
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# Redirect users to the home page or dashboard after logging in
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
