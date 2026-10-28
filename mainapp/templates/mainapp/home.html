@@ -1,0 +1,33 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm text-center">
+    <h1 class="display-5 fw-bold">Welcome to QuickShop</h1>
+    <p class="col-md-8 mx-auto fs-5 text-muted">Browse our products online. Log in to add your favorite items directly to your wishlist!</p>
+    <div class="d-flex justify-content-center gap-2">
+        <a href="{% url 'product_list' %}" class="btn btn-primary btn-lg">Browse Catalog</a>
+        <button type="button" class="btn btn-outline-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#storePolicyModal">
+            Wishlist Info Modal
+        </button>
+    </div>
+</div>
+
+<h3 class="mb-3">Featured Products</h3>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in products %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-primary">${{ product.price }}</h6>
+                <p class="card-text">{{ product.description|truncatewords:15 }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0">
+                <a href="{% url 'product_detail' product.pk %}" class="btn btn-outline-primary btn-sm w-100">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-muted">No products available yet. Add products via the Django admin panel.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="card shadow-sm col-md-8 mx-auto">
+    <div class="card-body p-4">
+        <span class="badge bg-secondary mb-2">{{ product.category }}</span>
+        <h2 class="card-title">{{ product.name }}</h2>
+        <h4 class="text-primary mb-3">${{ product.price }}</h4>
+        <p class="card-text">{{ product.description }}</p>
+
+        <hr>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'toggle_wishlist' product.pk %}" class="btn {% if is_in_wishlist %}btn-danger{% else %}btn-outline-danger{% endif %}">
+                {% if is_in_wishlist %} Remove from Wishlist{% else %} Add to Wishlist{% endif %}
+            </a>
+        {% else %}
+            <div class="alert alert-info mb-0" role="alert">
+                Want to save this item? <a href="{% url 'login' %}" class="alert-link">Log in</a> or <a href="{% url 'register' %}" class="alert-link">Register</a> to add it to your wishlist.
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

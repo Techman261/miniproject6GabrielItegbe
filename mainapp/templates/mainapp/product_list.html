@@ -1,0 +1,33 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>All Products Catalog</h2>
+    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#storePolicyModal">
+        View Store Notice
+    </button>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in products %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <span class="badge bg-secondary mb-2">{{ product.category }}</span>
+                <h5 class="card-title">{{ product.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-primary">${{ product.price }}</h6>
+                <p class="card-text text-muted">{{ product.description|truncatewords:15 }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0">
+                <a href="{% url 'product_detail' product.pk %}" class="btn btn-primary btn-sm w-100">View Product & Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            No products available yet. An administrator can add products via the Django admin panel[cite: 2].
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
