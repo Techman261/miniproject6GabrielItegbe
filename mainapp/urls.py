@@ -11,4 +11,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('wishlist/', views.wishlist_view, name='wishlist'),
     path('wishlist/toggle/<int:pk>/', views.toggle_wishlist_view, name='toggle_wishlist'),
+    path('my-admin/', views.admin_dashboard_view, name='admin_dashboard'),
+    path('my-admin/add/', views.admin_add_product_view, name='admin_add_product'),
+    path('my-admin/edit/<int:pk>/', views.admin_edit_product_view, name='admin_edit_product'),
+    path('my-admin/delete/<int:pk>/', views.admin_delete_product_view, name='admin_delete_product'),
 ]
